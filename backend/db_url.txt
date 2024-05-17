@@ -1,0 +1,6 @@
+postgresql://testdb_owner:rRmxh7QSyj1f@ep-polished-resonance-a54ri8ys.us-east-2.aws.neon.tech/medium?sslmode=require
+
+
+Acclerate
+
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiYmQyZmE4MDktODEzOS00MzkwLWIxMTEtZWEwZmM1Yjk0MjhkIiwidGVuYW50X2lkIjoiMjM1MTU0ZGQ3ZDZjZjVhNGNhNjhlMzY1ZTlhZTRkN2Y2YWY5OTJhYmI1Y2Q3YTczMWY0NDk2NWU5NTllMGIzNCIsImludGVybmFsX3NlY3JldCI6IjI2NjhmYTc4LTg1MTAtNGZhYi04MWY1LTgzNTA2MjJiOTljZCJ9.ORzoT8XquO0zJmEL518TRBjwuUtyClmkcvsqYij6F28"
