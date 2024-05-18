@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
 import { sign } from "hono/jwt";
+import { signinInput,signupInput } from "@divyam14/medium-common-v1";
 
 export const userRouter = new Hono<{
     Bindings: {
@@ -21,6 +22,15 @@ userRouter.post('/signup', async (c) => {
     }).$extends(withAccelerate())
 
     const body = await c.req.json()
+    const parsedIp = signupInput.safeParse(body)
+
+    if(!parsedIp.success){
+        c.status(403)
+        return c.json({
+            msg: "Wrong ip",
+            error: parsedIp.error
+        })
+    }
 
     try {
         const user = await prisma.user.create({
@@ -36,7 +46,12 @@ userRouter.post('/signup', async (c) => {
         return c.json(token)
 
     } catch (error) {
-        return c.status(403)
+        console.log(error)
+        
+        c.status(403)
+        return c.json({
+            msg: "Error"
+        })
     }
 
 })
@@ -47,7 +62,19 @@ userRouter.post('/signin', async (c) => {
         datasourceUrl: c.env?.DATABASE_URL,
     }).$extends(withAccelerate());
 
+
+
     const body = await c.req.json();
+    const validInput = signinInput.safeParse(body)
+
+    if(!validInput.success){
+        c.status(403)
+        return c.json({
+            msg: "Wrong ip",
+            error: validInput.error
+        })
+    }
+
     const user = await prisma.user.findUnique({
         where: {
             email: body.email
